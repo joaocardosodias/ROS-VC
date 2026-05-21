@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypenamespace="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>turtle_draw_pkg</name>
+  <version>0.1.0</version>
+  <description>TurtleDraw - Desenha bordas de imagens no turtlesim</description>
+  <maintainer email="user@example.com">user</maintainer>
+  <license>MIT</license>
+
+  <depend>rclpy</depend>
+  <depend>turtlesim</depend>
+  <depend>python3-numpy</depend>
+  <depend>python3-opencv</depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

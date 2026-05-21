@@ -1,0 +1,2 @@
+[console_scripts]
+turtle_draw = turtle_draw_pkg.turtle_draw:main

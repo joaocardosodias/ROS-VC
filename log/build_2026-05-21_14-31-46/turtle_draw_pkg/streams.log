@@ -1,0 +1,24 @@
+[0.499s] Invoking command in '/home/vboxuser/ROS-VC/src/turtle_draw_pkg': PYTHONPATH=/home/vboxuser/ROS-VC/build/turtle_draw_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ROS-VC/install/turtle_draw_pkg/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/turtle_draw_pkg build --build-base /home/vboxuser/ROS-VC/build/turtle_draw_pkg/build install --record /home/vboxuser/ROS-VC/build/turtle_draw_pkg/install.log --single-version-externally-managed install_data
+[0.682s] running egg_info
+[0.693s] writing ../../build/turtle_draw_pkg/turtle_draw_pkg.egg-info/PKG-INFO
+[0.693s] writing dependency_links to ../../build/turtle_draw_pkg/turtle_draw_pkg.egg-info/dependency_links.txt
+[0.694s] writing entry points to ../../build/turtle_draw_pkg/turtle_draw_pkg.egg-info/entry_points.txt
+[0.694s] writing requirements to ../../build/turtle_draw_pkg/turtle_draw_pkg.egg-info/requires.txt
+[0.694s] writing top-level names to ../../build/turtle_draw_pkg/turtle_draw_pkg.egg-info/top_level.txt
+[0.716s] reading manifest file '../../build/turtle_draw_pkg/turtle_draw_pkg.egg-info/SOURCES.txt'
+[0.716s] writing manifest file '../../build/turtle_draw_pkg/turtle_draw_pkg.egg-info/SOURCES.txt'
+[0.717s] running build
+[0.717s] running build_py
+[0.717s] copying turtle_draw_pkg/turtle_draw.py -> /home/vboxuser/ROS-VC/build/turtle_draw_pkg/build/lib/turtle_draw_pkg
+[0.717s] running install
+[0.722s] running install_lib
+[0.733s] copying /home/vboxuser/ROS-VC/build/turtle_draw_pkg/build/lib/turtle_draw_pkg/turtle_draw.py -> /home/vboxuser/ROS-VC/install/turtle_draw_pkg/lib/python3.12/site-packages/turtle_draw_pkg
+[0.733s] byte-compiling /home/vboxuser/ROS-VC/install/turtle_draw_pkg/lib/python3.12/site-packages/turtle_draw_pkg/turtle_draw.py to turtle_draw.cpython-312.pyc
+[0.735s] running install_data
+[0.735s] running install_egg_info
+[0.747s] removing '/home/vboxuser/ROS-VC/install/turtle_draw_pkg/lib/python3.12/site-packages/turtle_draw_pkg-0.1.0-py3.12.egg-info' (and everything under it)
+[0.748s] Copying ../../build/turtle_draw_pkg/turtle_draw_pkg.egg-info to /home/vboxuser/ROS-VC/install/turtle_draw_pkg/lib/python3.12/site-packages/turtle_draw_pkg-0.1.0-py3.12.egg-info
+[0.748s] running install_scripts
+[0.828s] Installing turtle_draw script to /home/vboxuser/ROS-VC/install/turtle_draw_pkg/lib/turtle_draw_pkg
+[0.828s] writing list of installed files to '/home/vboxuser/ROS-VC/build/turtle_draw_pkg/install.log'
+[0.849s] Invoked command in '/home/vboxuser/ROS-VC/src/turtle_draw_pkg' returned '0': PYTHONPATH=/home/vboxuser/ROS-VC/build/turtle_draw_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ROS-VC/install/turtle_draw_pkg/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/turtle_draw_pkg build --build-base /home/vboxuser/ROS-VC/build/turtle_draw_pkg/build install --record /home/vboxuser/ROS-VC/build/turtle_draw_pkg/install.log --single-version-externally-managed install_data

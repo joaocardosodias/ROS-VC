@@ -1,0 +1,55 @@
+[0.000000] (-) TimerEvent: {}
+[0.000093] (turtle_draw_pkg) JobQueued: {'identifier': 'turtle_draw_pkg', 'dependencies': OrderedDict()}
+[0.000135] (turtle_draw_pkg) JobStarted: {'identifier': 'turtle_draw_pkg'}
+[0.099790] (-) TimerEvent: {}
+[0.199988] (-) TimerEvent: {}
+[0.302307] (-) TimerEvent: {}
+[0.403338] (-) TimerEvent: {}
+[0.504373] (-) TimerEvent: {}
+[0.612588] (-) TimerEvent: {}
+[0.712911] (-) TimerEvent: {}
+[0.792706] (turtle_draw_pkg) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/turtle_draw_pkg', 'build', '--build-base', '/home/vboxuser/ROS-VC/build/turtle_draw_pkg/build', 'install', '--record', '/home/vboxuser/ROS-VC/build/turtle_draw_pkg/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/vboxuser/ROS-VC/src/turtle_draw_pkg', 'env': {'USER': 'vboxuser', 'npm_config_user_agent': 'npm/undefined node/v24.3.0 linux x64 workspaces/false', 'AGENT': '1', 'XDG_SESSION_TYPE': 'wayland', 'CLUTTER_DISABLE_MIPMAPPED_TEXT': '1', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'OPENCODE_PROCESS_ROLE': 'worker', 'HOME': '/home/vboxuser', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'SYSTEMD_EXEC_PID': '2076', 'OPENCODE_RUN_ID': 'f77ead41-411b-4baf-b0f5-675cb0d358b6', 'GSM_SKIP_SSH_AGENT_WORKAROUND': 'true', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'WAYLAND_DISPLAY': 'wayland-0', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'vboxuser', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'MEMORY_PRESSURE_WATCH': '/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/session.slice/org.gnome.Shell@wayland.service/memory.pressure', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'vboxuser', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'OPENCODE': '1', 'PATH': '/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/lab:@/tmp/.ICE-unix/2048,unix/lab:/tmp/.ICE-unix/2048', 'XDG_MENU_PREFIX': 'gnome-', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/1bba80d6_150f_45ad_9128_9141b2952b27', 'GNOME_SETUP_DISPLAY': ':1', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'OPENCODE_PID': '3123', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/.mutter-Xwaylandauth.JZDIP3', 'GNOME_TERMINAL_SERVICE': ':1.116', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy', 'SHELL': '/usr/bin/fish', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/vboxuser/ROS-VC/build/turtle_draw_pkg', 'XDG_DATA_DIRS': '/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/vboxuser/ROS-VC/build/turtle_draw_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/vboxuser/ROS-VC/install/turtle_draw_pkg/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'MEMORY_PRESSURE_WRITE': 'c29tZSAyMDAwMDAgMjAwMDAwMAA=', 'VTE_VERSION': '7600', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor'}, 'shell': False}
+[0.813173] (-) TimerEvent: {}
+[0.914389] (-) TimerEvent: {}
+[0.984222] (turtle_draw_pkg) StdoutLine: {'line': b'running egg_info\n'}
+[0.985651] (turtle_draw_pkg) StdoutLine: {'line': b'creating ../../build/turtle_draw_pkg/turtle_draw_pkg.egg-info\n'}
+[0.996394] (turtle_draw_pkg) StdoutLine: {'line': b'writing ../../build/turtle_draw_pkg/turtle_draw_pkg.egg-info/PKG-INFO\n'}
+[0.996646] (turtle_draw_pkg) StdoutLine: {'line': b'writing dependency_links to ../../build/turtle_draw_pkg/turtle_draw_pkg.egg-info/dependency_links.txt\n'}
+[0.996921] (turtle_draw_pkg) StdoutLine: {'line': b'writing entry points to ../../build/turtle_draw_pkg/turtle_draw_pkg.egg-info/entry_points.txt\n'}
+[0.997036] (turtle_draw_pkg) StdoutLine: {'line': b'writing requirements to ../../build/turtle_draw_pkg/turtle_draw_pkg.egg-info/requires.txt\n'}
+[0.997115] (turtle_draw_pkg) StdoutLine: {'line': b'writing top-level names to ../../build/turtle_draw_pkg/turtle_draw_pkg.egg-info/top_level.txt\n'}
+[0.997192] (turtle_draw_pkg) StdoutLine: {'line': b"writing manifest file '../../build/turtle_draw_pkg/turtle_draw_pkg.egg-info/SOURCES.txt'\n"}
+[1.017430] (-) TimerEvent: {}
+[1.023778] (turtle_draw_pkg) StdoutLine: {'line': b"reading manifest file '../../build/turtle_draw_pkg/turtle_draw_pkg.egg-info/SOURCES.txt'\n"}
+[1.023986] (turtle_draw_pkg) StdoutLine: {'line': b"writing manifest file '../../build/turtle_draw_pkg/turtle_draw_pkg.egg-info/SOURCES.txt'\n"}
+[1.024075] (turtle_draw_pkg) StdoutLine: {'line': b'running build\n'}
+[1.024154] (turtle_draw_pkg) StdoutLine: {'line': b'running build_py\n'}
+[1.024229] (turtle_draw_pkg) StdoutLine: {'line': b'creating /home/vboxuser/ROS-VC/build/turtle_draw_pkg/build\n'}
+[1.024304] (turtle_draw_pkg) StdoutLine: {'line': b'creating /home/vboxuser/ROS-VC/build/turtle_draw_pkg/build/lib\n'}
+[1.024379] (turtle_draw_pkg) StdoutLine: {'line': b'creating /home/vboxuser/ROS-VC/build/turtle_draw_pkg/build/lib/turtle_draw_pkg\n'}
+[1.024454] (turtle_draw_pkg) StdoutLine: {'line': b'copying turtle_draw_pkg/turtle_draw.py -> /home/vboxuser/ROS-VC/build/turtle_draw_pkg/build/lib/turtle_draw_pkg\n'}
+[1.024575] (turtle_draw_pkg) StdoutLine: {'line': b'copying turtle_draw_pkg/__init__.py -> /home/vboxuser/ROS-VC/build/turtle_draw_pkg/build/lib/turtle_draw_pkg\n'}
+[1.024654] (turtle_draw_pkg) StdoutLine: {'line': b'running install\n'}
+[1.028478] (turtle_draw_pkg) StdoutLine: {'line': b'running install_lib\n'}
+[1.040805] (turtle_draw_pkg) StdoutLine: {'line': b'creating /home/vboxuser/ROS-VC/install/turtle_draw_pkg/lib/python3.12/site-packages/turtle_draw_pkg\n'}
+[1.041065] (turtle_draw_pkg) StdoutLine: {'line': b'copying /home/vboxuser/ROS-VC/build/turtle_draw_pkg/build/lib/turtle_draw_pkg/turtle_draw.py -> /home/vboxuser/ROS-VC/install/turtle_draw_pkg/lib/python3.12/site-packages/turtle_draw_pkg\n'}
+[1.041311] (turtle_draw_pkg) StdoutLine: {'line': b'copying /home/vboxuser/ROS-VC/build/turtle_draw_pkg/build/lib/turtle_draw_pkg/__init__.py -> /home/vboxuser/ROS-VC/install/turtle_draw_pkg/lib/python3.12/site-packages/turtle_draw_pkg\n'}
+[1.041562] (turtle_draw_pkg) StdoutLine: {'line': b'byte-compiling /home/vboxuser/ROS-VC/install/turtle_draw_pkg/lib/python3.12/site-packages/turtle_draw_pkg/turtle_draw.py to turtle_draw.cpython-312.pyc\n'}
+[1.042759] (turtle_draw_pkg) StdoutLine: {'line': b'byte-compiling /home/vboxuser/ROS-VC/install/turtle_draw_pkg/lib/python3.12/site-packages/turtle_draw_pkg/__init__.py to __init__.cpython-312.pyc\n'}
+[1.042988] (turtle_draw_pkg) StdoutLine: {'line': b'running install_data\n'}
+[1.043093] (turtle_draw_pkg) StdoutLine: {'line': b'creating /home/vboxuser/ROS-VC/install/turtle_draw_pkg/share/ament_index\n'}
+[1.043178] (turtle_draw_pkg) StdoutLine: {'line': b'creating /home/vboxuser/ROS-VC/install/turtle_draw_pkg/share/ament_index/resource_index\n'}
+[1.043343] (turtle_draw_pkg) StdoutLine: {'line': b'creating /home/vboxuser/ROS-VC/install/turtle_draw_pkg/share/ament_index/resource_index/packages\n'}
+[1.043473] (turtle_draw_pkg) StdoutLine: {'line': b'copying resource/turtle_draw_pkg -> /home/vboxuser/ROS-VC/install/turtle_draw_pkg/share/ament_index/resource_index/packages\n'}
+[1.043597] (turtle_draw_pkg) StdoutLine: {'line': b'copying package.xml -> /home/vboxuser/ROS-VC/install/turtle_draw_pkg/share/turtle_draw_pkg\n'}
+[1.043721] (turtle_draw_pkg) StdoutLine: {'line': b'creating /home/vboxuser/ROS-VC/install/turtle_draw_pkg/share/turtle_draw_pkg/resources\n'}
+[1.044006] (turtle_draw_pkg) StdoutLine: {'line': b'copying resources/dog.jpg -> /home/vboxuser/ROS-VC/install/turtle_draw_pkg/share/turtle_draw_pkg/resources\n'}
+[1.044108] (turtle_draw_pkg) StdoutLine: {'line': b'running install_egg_info\n'}
+[1.059276] (turtle_draw_pkg) StdoutLine: {'line': b'Copying ../../build/turtle_draw_pkg/turtle_draw_pkg.egg-info to /home/vboxuser/ROS-VC/install/turtle_draw_pkg/lib/python3.12/site-packages/turtle_draw_pkg-0.1.0-py3.12.egg-info\n'}
+[1.059489] (turtle_draw_pkg) StdoutLine: {'line': b'running install_scripts\n'}
+[1.120441] (-) TimerEvent: {}
+[1.143470] (turtle_draw_pkg) StdoutLine: {'line': b'Installing turtle_draw script to /home/vboxuser/ROS-VC/install/turtle_draw_pkg/lib/turtle_draw_pkg\n'}
+[1.143861] (turtle_draw_pkg) StdoutLine: {'line': b"writing list of installed files to '/home/vboxuser/ROS-VC/build/turtle_draw_pkg/install.log'\n"}
+[1.166801] (turtle_draw_pkg) CommandEnded: {'returncode': 0}
+[1.182569] (turtle_draw_pkg) JobEnded: {'identifier': 'turtle_draw_pkg', 'rc': 0}
+[1.185706] (-) EventReactorShutdown: {}
