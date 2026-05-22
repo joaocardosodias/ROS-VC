@@ -10,6 +10,7 @@
   <depend>rclpy</depend>
   <depend>turtlesim</depend>
   <depend>python3-numpy</depend>
+  <depend>python3-matplotlib</depend>
   <depend>python3-opencv</depend>
 
   <export>

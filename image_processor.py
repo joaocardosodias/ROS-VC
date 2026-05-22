@@ -65,8 +65,10 @@ def get_edge_points(image_path, max_points=800, threshold=80):
     if img_bgr is None:
         raise FileNotFoundError(f"nao encontrei a imagem: {image_path}")
 
-    # converte pra cinza e float64 pra facilitar as operacoes
-    img = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY).astype(np.float64)
+    # converte a imagem de BGR para escala de cinza usando a fórmula de luminância do NumPy e transforma para float64
+    # isso facilita o processamento numérico e evita estouros em operações posteriores
+    # B = canal 0, G = canal 1, R = canal 2
+    img = (0.299 * img_bgr[:, :, 2] + 0.587 * img_bgr[:, :, 1] + 0.114 * img_bgr[:, :, 0]).astype(np.float64)
 
     # suaviza pra reduzir ruido antes do sobel
     blurred = convolve(img, gaussian_kernel())
@@ -102,7 +104,7 @@ if __name__ == '__main__':
     IMAGE_PATH = 'dog.jpg'
 
     img_bgr = cv2.imread(IMAGE_PATH)
-    img = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY).astype(np.float64)
+    img = (0.299 * img_bgr[:, :, 2] + 0.587 * img_bgr[:, :, 1] + 0.114 * img_bgr[:, :, 0]).astype(np.float64)
 
     blurred = convolve(img, gaussian_kernel())
     edges = sobel(blurred)

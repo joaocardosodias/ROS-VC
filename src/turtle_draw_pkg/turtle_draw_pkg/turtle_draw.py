@@ -19,7 +19,9 @@ def get_image_path():
 def get_edge_points(image_path, max_points=3000):
     # Carregar imagem (único uso permitido do OpenCV)
     img_bgr = cv2.imread(image_path)
-    img = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY).astype(np.float64)
+    # Converter para cinza e float64 usando NumPy (luminância)
+    # B = canal 0, G = canal 1, R = canal 2
+    img = (0.299 * img_bgr[:, :, 2] + 0.587 * img_bgr[:, :, 1] + 0.114 * img_bgr[:, :, 0]).astype(np.float64)
 
     # Filtro Gaussiano para suavizar e reduzir ruído
     def gaussian_kernel(size=5, sigma=1.4):

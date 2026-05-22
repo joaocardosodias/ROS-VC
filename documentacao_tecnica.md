@@ -4,7 +4,7 @@
 
 ## Pré-processamento
 
-A primeira coisa que fiz foi converter a imagem pra escala de cinza. Usei o OpenCV só pra carregar e converter (que é o que o enunciado permite), e daí em diante tudo foi feito com NumPy.
+A primeira coisa que fiz foi carregar a imagem e converter pra escala de cinza. Usei o OpenCV apenas para carregar a imagem e o NumPy para realizar a conversão de escala de cinza usando a fórmula de luminância, e daí em diante tudo foi feito com NumPy.
 
 O motivo de converter pra cinza é simples: os filtros que apliquei depois trabalham em matrizes 2D. Se fosse usar os 3 canais de cor ia ter que fazer tudo três vezes sem ganhar nada relevante pra detecção de borda.
 
