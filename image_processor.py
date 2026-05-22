@@ -1,23 +1,22 @@
-# importa as bibliotecas necessárias
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
 
-# Função para criar um kernel Gaussiano 2D. Esse kernel é usado para suavizar a imagem antes da detecção de bordas.
-# O size define a largura/altura do kernel, e sigma controla a quantidade de desfoque.
+# kernel gaussiano 2D — usado pra suavizar a imagem antes do sobel
+# o sigma controla o quanto borra. 1.4 foi o que funcionou melhor nos testes
 def gaussian_kernel(size=5, sigma=1.4):
     ax = np.arange(-(size // 2), size // 2 + 1)
     xx, yy = np.meshgrid(ax, ax)
     kernel = np.exp(-(xx**2 + yy**2) / (2 * sigma**2))
-    # normaliza para que a soma dos elementos seja igual a 1
-    return kernel / kernel.sum()
+    return kernel / kernel.sum()  # normaliza pra soma = 1
 
 
-# A convolução de imagem é uma operação matemática que aplica um filtro (ou máscara) aos pixels de uma imagem para transformá-la
+# convolucao 2D feita manualmente, sem usar nada do opencv
+# o mode='reflect' é importante — com zeros o sobel detectava uma borda falsa
+# em toda a extremidade da imagem (aquele retangulo que aparecia antes)
 def convolve(image, kernel):
     pad = kernel.shape[0] // 2
-    # mode='reflect' evita o artefato de borda preta que ocorre com padding de zeros
     padded = np.pad(image, pad, mode='reflect')
     output = np.zeros_like(image)
     for i in range(image.shape[0]):
@@ -28,126 +27,101 @@ def convolve(image, kernel):
     return output
 
 
-# Função que detecta bordas usando o operador de Sobel. Ele calcula a aproximação do gradiente de intensidade da imagem,
-# destacando áreas de alto contraste onde ocorrem mudanças abruptas de cor.
-# O Sobel calcula a derivada da imagem nas direções x e y. Ou seja o operador utiliza duas máscaras de convolução
-# (filtros) de tamanho 3x3
+# operador de sobel — detecta onde tem mudança brusca de intensidade (bordas)
+# aplica dois kernels: um na direcao x e outro na y, depois combina com a magnitude
 def sobel(image):
-    # Kernel Sobel para derivada na direção x que aplica matriz Gx
+    # gradiente horizontal
     Kx = np.array([[-1, 0, 1],
                    [-2, 0, 2],
                    [-1, 0, 1]], dtype=np.float64)
 
-    # Kernel Sobel para derivada na direção y que aplica matriz Gy
+    # gradiente vertical
     Ky = np.array([[-1, -2, -1],
                    [ 0,  0,  0],
                    [ 1,  2,  1]], dtype=np.float64)
 
-    # Aplica convolução com os kernels de Sobel que detectam bordas nas direções x e y, respectivamente
     Gx = convolve(image, Kx)
     Gy = convolve(image, Ky)
 
-    # Magnitude do gradiente: intensidade da borda
+    # magnitude do gradiente — combina as duas direções
     magnitude = np.sqrt(Gx**2 + Gy**2)
-    # Normaliza para o intervalo 0-255 para exibição
-    return magnitude / magnitude.max() * 255
+    return magnitude / magnitude.max() * 255  # normaliza pra 0-255
 
 
 def get_edge_points(image_path, max_points=800, threshold=80):
     """
-    Pipeline completa de visão computacional.
+    Função principal da pipeline de visão computacional.
 
-    Recebe o caminho de uma imagem e retorna um array (N, 2) com as
-    coordenadas dos pontos de borda já mapeados para o espaço do Turtlesim
-    (x e y entre 0.5 e 10.5).
+    Recebe o caminho de uma imagem e devolve os pontos de borda
+    já mapeados pro espaço do turtlesim (x e y entre 0.5 e 10.5).
 
-    Etapas:
-        1. Carregamento com OpenCV (único uso permitido)
-        2. Conversão para escala de cinza
-        3. Suavização com filtro Gaussiano (convolução manual)
-        4. Detecção de bordas com operador Sobel (convolução manual)
-        5. Limiarização binária
-        6. Amostragem e mapeamento para coordenadas do Turtlesim
-
-    Parâmetros:
-        image_path (str): Caminho para a imagem de entrada.
-        max_points  (int): Número máximo de pontos a retornar (padrão: 800).
-        threshold   (int): Limiar de intensidade para considerar um pixel como
-                           borda, de 0 a 255 (padrão: 80).
-
-    Retorna:
-        numpy.ndarray: Array de forma (N, 2) com colunas [x_turtlesim, y_turtlesim].
+    Parametros:
+        image_path  -- caminho pra imagem
+        max_points  -- quantos pontos retornar no maximo (padrão: 800)
+        threshold   -- limiar pra binarizacao, de 0 a 255 (padrão: 80)
     """
-    # 1. Carrega a imagem usando OpenCV (conforme permitido pelo enunciado)
+    # unico uso permitido do opencv: carregar a imagem
     img_bgr = cv2.imread(image_path)
     if img_bgr is None:
-        raise FileNotFoundError(f"Imagem não encontrada: {image_path}")
+        raise FileNotFoundError(f"nao encontrei a imagem: {image_path}")
 
-    # 2. Converte para escala de cinza e float64 para operações numéricas
+    # converte pra cinza e float64 pra facilitar as operacoes
     img = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY).astype(np.float64)
 
-    # 3. Aplica suavização Gaussiana para reduzir ruído antes do Sobel
+    # suaviza pra reduzir ruido antes do sobel
     blurred = convolve(img, gaussian_kernel())
 
-    # 4. Detecta bordas com o operador de Sobel
+    # detecta as bordas
     edges = sobel(blurred)
 
-    # 5. Limiarização: pixels acima do threshold viram 255, resto vira 0
+    # limiarizacao: pixel acima do threshold vira branco (borda), resto vira preto
     binary = (edges > threshold).astype(np.uint8) * 255
 
-    # 6. Extrai as coordenadas (linha, coluna) de cada pixel de borda
+    # pega as coordenadas dos pixels de borda
     points = np.argwhere(binary > 0)
 
-    # Amostra para não exceder max_points (mantém distribuição uniforme)
+    # amostra pra nao mandar pontos demais pro turtlesim
     if len(points) > max_points:
         idx = np.linspace(0, len(points) - 1, max_points, dtype=int)
         points = points[idx]
 
-    # Mapeia coordenadas de pixel para o espaço do Turtlesim (0.5 a 10.5)
+    # mapeia de coordenadas de pixel pra coordenadas do turtlesim
+    # o eixo y é invertido porque na imagem (0,0) é no canto superior esquerdo
+    # e no turtlesim o (0,0) é no canto inferior esquerdo
     h, w = img.shape
     mapped = np.zeros((len(points), 2), dtype=np.float64)
-    mapped[:, 0] = 0.5 + (points[:, 1] / w) * 10.0   # coluna → x
-    mapped[:, 1] = 10.5 - (points[:, 0] / h) * 10.0  # linha  → y (invertido)
+    mapped[:, 0] = 0.5 + (points[:, 1] / w) * 10.0   # coluna -> x
+    mapped[:, 1] = 10.5 - (points[:, 0] / h) * 10.0  # linha  -> y (invertido)
 
     return mapped
 
 
-# =============================================================================
-# Bloco de visualização — executa somente quando rodado diretamente
-# (não é importado pelo turtle_draw.py)
-# =============================================================================
+# esse bloco só executa se rodar o arquivo diretamente
+# serve pra visualizar as etapas do processamento
 if __name__ == '__main__':
     IMAGE_PATH = 'dog.jpg'
 
-    # abre a imagem em cores usando OpenCV (BGR)
     img_bgr = cv2.imread(IMAGE_PATH)
-
-    # converte a imagem de BGR para escala de cinza e transforma para float64
     img = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY).astype(np.float64)
 
-    # Aplica suavização Gaussiana à imagem em escala de cinza
     blurred = convolve(img, gaussian_kernel())
-
-    # Calcula a imagem de bordas a partir da imagem suavizada
     edges = sobel(blurred)
 
-    # Limiarização
     threshold = 80
     binary = (edges > threshold).astype(np.uint8) * 255
 
-    # Exibe as imagens para visualização
+    # mostra as 3 etapas lado a lado
     fig, axes = plt.subplots(1, 3, figsize=(15, 5))
     axes[0].imshow(img, cmap='gray')
     axes[0].set_title('1. Escala de Cinza')
     axes[1].imshow(edges, cmap='gray')
     axes[1].set_title('2. Bordas (Sobel)')
     axes[2].imshow(binary, cmap='gray')
-    axes[2].set_title('3. Limiarização')
+    axes[2].set_title('3. Limiarizacao')
     for ax in axes:
         ax.axis('off')
     plt.tight_layout()
     plt.show()
 
-    # Resultado: encontra os pontos de borda na imagem binária
     points = np.argwhere(binary > 0)
     print(f"Total de pontos de borda: {len(points)}")
