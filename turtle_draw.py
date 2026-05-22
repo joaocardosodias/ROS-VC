@@ -1,77 +1,17 @@
 import rclpy
 from rclpy.node import Node
 from turtlesim.srv import TeleportAbsolute, SetPen
-import numpy as np
-import cv2
 
-
-# =============================================================
-# PROCESSAMENTO DA IMAGEM
-# Extrai os pontos de borda e mapeia para o espaço do turtlesim
-# =============================================================
-def get_edge_points(image_path, max_points=800):
-    # Carregar imagem (único uso permitido do OpenCV)
-    img_bgr = cv2.imread(image_path)
-    img = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY).astype(np.float64)
-
-    # Filtro Gaussiano para suavizar e reduzir ruído
-    def gaussian_kernel(size=5, sigma=1.4):
-        ax = np.arange(-(size // 2), size // 2 + 1)
-        xx, yy = np.meshgrid(ax, ax)
-        kernel = np.exp(-(xx**2 + yy**2) / (2 * sigma**2))
-        return kernel / kernel.sum()
-
-    def convolve(image, kernel):
-        pad = kernel.shape[0] // 2
-        padded = np.pad(image, pad, mode='reflect')
-        output = np.zeros_like(image)
-        for i in range(image.shape[0]):
-            for j in range(image.shape[1]):
-                output[i, j] = np.sum(
-                    padded[i:i+kernel.shape[0], j:j+kernel.shape[1]] * kernel
-                )
-        return output
-
-    # Sobel: detecta bordas em X e Y e combina
-    def sobel(image):
-        Kx = np.array([[-1, 0, 1],
-                       [-2, 0, 2],
-                       [-1, 0, 1]], dtype=np.float64)
-        Ky = np.array([[-1, -2, -1],
-                       [ 0,  0,  0],
-                       [ 1,  2,  1]], dtype=np.float64)
-        Gx = convolve(image, Kx)
-        Gy = convolve(image, Ky)
-        magnitude = np.sqrt(Gx**2 + Gy**2)
-        return magnitude / magnitude.max() * 255
-
-    blurred = convolve(img, gaussian_kernel())
-    edges = sobel(blurred)
-
-    # Limiarização: só mantém bordas fortes
-    binary = (edges > 80).astype(np.uint8) * 255
-
-    # Extrair coordenadas dos pixels de borda
-    points = np.argwhere(binary > 0)
-
-    # Amostrar para não ter pontos demais
-    if len(points) > max_points:
-        idx = np.linspace(0, len(points) - 1, max_points, dtype=int)
-        points = points[idx]
-
-    # Mapear pixels para coordenadas do turtlesim (0.5 a 10.5)
-    h, w = img.shape
-    mapped = np.zeros((len(points), 2), dtype=np.float64)
-    mapped[:, 0] = 0.5 + (points[:, 1] / w) * 10.0        # x
-    mapped[:, 1] = 10.5 - (points[:, 0] / h) * 10.0       # y invertido
-
-    return mapped
+# Importa a função de visão computacional do image_processor.
+# Toda a pipeline de CV (gaussiano, sobel, limiarização, mapeamento)
+# está encapsulada em get_edge_points() — definida em image_processor.py
+from image_processor import get_edge_points
 
 
 # =============================================================
 # NÓ ROS 2
-# Usa teleport para ir a cada ponto e marca com um ponto
-# A caneta só fica abaixada por um instante em cada ponto
+# Usa teleport para ir a cada ponto e marca com um ponto.
+# A caneta só fica abaixada por um instante em cada ponto.
 # =============================================================
 class TurtleDraw(Node):
     def __init__(self, points):
@@ -129,7 +69,11 @@ class TurtleDraw(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    points = get_edge_points('dog.jpg', max_points=800)
+
+    # Chama o image_processor para processar a imagem e obter os pontos de borda
+    # já mapeados para o espaço do Turtlesim
+    points = get_edge_points('dog.jpg', max_points=800, threshold=80)
+
     node = TurtleDraw(points)
     rclpy.spin(node)
     node.destroy_node()
