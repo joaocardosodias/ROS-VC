@@ -11,7 +11,7 @@ def gaussian_kernel(size=5, sigma=1.4):
     kernel = np.exp(-(xx**2 + yy**2) / (2 * sigma**2))
     return kernel / kernel.sum()  # normaliza pra soma = 1
 
-
+#funçao que aplica as mascaras/filtros
 def convolve(image, kernel):
     pad = kernel.shape[0] // 2
     padded = np.pad(image, pad, mode='reflect')
