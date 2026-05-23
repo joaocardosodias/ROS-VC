@@ -4,6 +4,13 @@ Projeto da ponderada de Robótica e Visão Computacional. A ideia é pegar uma i
 
 ---
 
+## Demonstração (Vídeo)
+
+Assista ao Screencast demonstrativo do projeto funcionando:
+🔗 **[Vídeo da Demonstração no YouTube](https://youtu.be/2YuZff8OVJI)**
+
+---
+
 ## Arquivos
 
 ```

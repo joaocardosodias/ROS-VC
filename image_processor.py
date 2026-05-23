@@ -12,9 +12,6 @@ def gaussian_kernel(size=5, sigma=1.4):
     return kernel / kernel.sum()  # normaliza pra soma = 1
 
 
-# convolucao 2D feita manualmente, sem usar nada do opencv
-# o mode='reflect' é importante — com zeros o sobel detectava uma borda falsa
-# em toda a extremidade da imagem (aquele retangulo que aparecia antes)
 def convolve(image, kernel):
     pad = kernel.shape[0] // 2
     padded = np.pad(image, pad, mode='reflect')
@@ -60,14 +57,12 @@ def get_edge_points(image_path, max_points=800, threshold=80):
         max_points  -- quantos pontos retornar no maximo (padrão: 800)
         threshold   -- limiar pra binarizacao, de 0 a 255 (padrão: 80)
     """
-    # unico uso permitido do opencv: carregar a imagem
+    
     img_bgr = cv2.imread(image_path)
     if img_bgr is None:
         raise FileNotFoundError(f"nao encontrei a imagem: {image_path}")
 
     # converte a imagem de BGR para escala de cinza usando a fórmula de luminância do NumPy e transforma para float64
-    # isso facilita o processamento numérico e evita estouros em operações posteriores
-    # B = canal 0, G = canal 1, R = canal 2
     img = (0.299 * img_bgr[:, :, 2] + 0.587 * img_bgr[:, :, 1] + 0.114 * img_bgr[:, :, 0]).astype(np.float64)
 
     # suaviza pra reduzir ruido antes do sobel
